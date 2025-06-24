@@ -16,8 +16,10 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'cover_image' => 'nullable|string|max:255',
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'summary' => 'nullable|string',
+            'author' => 'nullable|string|max:255',
             'price' => 'required|numeric|min:0',
             'category' => 'required|string|max:255',
         ]);
@@ -34,8 +36,10 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $validated = $request->validate([
+            'cover_image' => 'nullable|string|max:255',
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'summary' => 'nullable|string',
+            'author' => 'nullable|string|max:255',
             'price' => 'required|numeric|min:0',
             'category' => 'required|string|max:255',
         ]);

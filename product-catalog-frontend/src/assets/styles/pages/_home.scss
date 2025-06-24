@@ -1,0 +1,35 @@
+@use '../abstracts' as a;
+
+.product-catalog {
+  padding: 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0rem;
+  width: 100%;
+
+  h1 {
+    margin-right: 1rem;
+  }
+}
+
+.product-form .field {
+  margin-bottom: 1rem;
+}
+
+.product-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.product-image {
+  max-height: 10rem;
+}
