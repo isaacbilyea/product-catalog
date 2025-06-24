@@ -1,8 +1,8 @@
 <template>
   <div class="product-catalog">
     <div class="header">
-      <h1>Product Catalog</h1>
-      <Button label="Add Product" icon="pi pi-plus" @click="showAddDialog = true" />
+      <h1>Book Catalog</h1>
+      <Button label="Add Book" icon="pi pi-plus" @click="showAddDialog = true" />
     </div>
 
     <DataTable
@@ -14,8 +14,20 @@
       filterDisplay="menu"
       :globalFilterFields="['name', 'category']"
     >
+      <Column field="cover_image" header="Book Cover">
+        <template #body="slotProps">
+          <img
+            v-if="slotProps.data.cover_image"
+            :src="slotProps.data.cover_image"
+            :alt="slotProps.data.name"
+            class="product-image"
+          />
+          <span v-else class="no-image">No Image</span>
+        </template>
+      </Column>
       <Column field="name" header="Name" sortable></Column>
-      <Column field="description" header="Description"></Column>
+      <Column field="summary" header="Summary"></Column>
+      <Column field="author" header="Author" sortable></Column>
       <Column field="price" header="Price" sortable>
         <template #body="slotProps"> ${{ slotProps.data.price }} </template>
       </Column>
@@ -35,19 +47,29 @@
     <!-- Add/Edit Dialog -->
     <Dialog
       v-model:visible="showAddDialog"
-      :header="editingProduct ? 'Edit Product' : 'Add Product'"
+      :header="editingProduct ? 'Edit Book' : 'Add Book'"
       :modal="true"
       :style="{ width: '50vw' }"
     >
       <div class="product-form">
+        <div class="field">
+          <label for="cover_image">Book Cover</label>
+          <InputText id="cover_image" v-model="form.cover_image" class="w-full" />
+        </div>
+
         <div class="field">
           <label for="name">Name</label>
           <InputText id="name" v-model="form.name" class="w-full" />
         </div>
 
         <div class="field">
-          <label for="description">Description</label>
-          <Textarea id="description" v-model="form.description" class="w-full" rows="3" />
+          <label for="summary">Summary</label>
+          <Textarea id="summary" v-model="form.summary" class="w-full" rows="3" />
+        </div>
+
+        <div class="field">
+          <label for="author">Author</label>
+          <InputText id="author" v-model="form.author" class="w-full" />
         </div>
 
         <div class="field">
@@ -94,8 +116,10 @@ export default {
       showAddDialog: false,
       editingProduct: null,
       form: {
+        cover_image: '',
         name: '',
-        description: '',
+        summary: '',
+        author: '',
         price: '',
         category: '',
       },
@@ -159,8 +183,10 @@ export default {
       this.showAddDialog = false
       this.editingProduct = null
       this.form = {
+        cover_image: '',
         name: '',
-        description: '',
+        summary: '',
+        author: '',
         price: '',
         category: '',
       }
@@ -168,30 +194,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-.product-catalog {
-  padding: 2rem;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.product-form .field {
-  margin-bottom: 1rem;
-}
-
-.product-form label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-}
-
-.w-full {
-  width: 100%;
-}
-</style>
