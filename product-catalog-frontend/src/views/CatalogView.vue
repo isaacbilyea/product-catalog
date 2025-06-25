@@ -20,13 +20,17 @@
             v-if="slotProps.data.cover_image"
             :src="slotProps.data.cover_image"
             :alt="slotProps.data.name"
-            class="product-image"
+            class="catalog-image"
           />
           <span v-else class="no-image">No Image</span>
         </template>
       </Column>
       <Column field="name" header="Name" sortable></Column>
-      <Column field="summary" header="Summary"></Column>
+      <Column field="summary" header="Summary">
+        <template #body="slotProps">
+          <div class="catalog-summary">{{ slotProps.data.summary }}</div>
+        </template>
+      </Column>
       <Column field="author" header="Author" sortable></Column>
       <Column field="price" header="Price" sortable>
         <template #body="slotProps"> ${{ slotProps.data.price }} </template>
@@ -49,7 +53,6 @@
       v-model:visible="showAddDialog"
       :header="editingProduct ? 'Edit Book' : 'Add Book'"
       :modal="true"
-      :style="{ width: '50vw' }"
     >
       <div class="product-form">
         <div class="field">
@@ -144,36 +147,36 @@ export default {
           this.toast.add({
             severity: 'success',
             summary: 'Success',
-            detail: 'Product updated successfully',
+            detail: 'Book updated successfully',
           })
         } else {
           await this.productStore.createProduct(this.form)
           this.toast.add({
             severity: 'success',
             summary: 'Success',
-            detail: 'Product created successfully',
+            detail: 'Book created successfully',
           })
         }
         this.closeDialog()
       } catch (error) {
-        this.toast.add({ severity: 'error', summary: 'Error', detail: 'Failed to save product' })
+        this.toast.add({ severity: 'error', summary: 'Error', detail: 'Failed to save book' })
       }
     },
 
     async deleteProduct(id) {
-      if (confirm('Are you sure you want to delete this product?')) {
+      if (confirm('Are you sure you want to delete this book?')) {
         try {
           await this.productStore.deleteProduct(id)
           this.toast.add({
             severity: 'success',
             summary: 'Success',
-            detail: 'Product deleted successfully',
+            detail: 'Book deleted successfully',
           })
         } catch (error) {
           this.toast.add({
             severity: 'error',
             summary: 'Error',
-            detail: 'Failed to delete product',
+            detail: 'Failed to delete book',
           })
         }
       }
