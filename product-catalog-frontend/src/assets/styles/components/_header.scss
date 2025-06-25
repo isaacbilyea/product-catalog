@@ -32,6 +32,7 @@
     a {
       @include a.hover-underline;
       padding: 0;
+      color: inherit;
     }
   }
 }

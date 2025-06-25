@@ -2,6 +2,8 @@
 
 .product-catalog {
   padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .header {
@@ -30,6 +32,64 @@
   width: 100%;
 }
 
-.product-image {
-  max-height: 10rem;
+.catalog-image {
+  height: 10rem;
+  width: auto;
+  max-width: fit-content;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 350px;
+}
+
+.product-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.catalog-summary {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.5;
+  height: 4.5em;
+}
+
+.p-dialog {
+  width: 95vw;
+  max-width: 44rem;
+  margin: 1rem;
+
+  @media (min-width: 40rem) {
+    width: 85vw;
+    max-width: 37.5rem;
+  }
+
+  @media (min-width: 60rem) {
+    width: 50vw;
+    max-width: 44rem;
+  }
+}
+
+.product-form {
+  .field {
+    margin-bottom: 1.5rem;
+
+    @media screen and (max-width: 640px) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  input,
+  textarea {
+    @media screen and (max-width: 640px) {
+      font-size: 16px;
+    }
+  }
 }
