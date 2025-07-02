@@ -15,7 +15,12 @@
       </div>
 
       <div v-else class="products-grid">
-        <div v-for="product in productStore.products" :key="product.id" class="product-card">
+        <div
+          v-for="product in productStore.products"
+          :key="product.id"
+          class="product-card cursor-pointer"
+          @click="viewBook(product.id)"
+        >
           <div class="product-image">
             <img :src="product.cover_image" :alt="product.name" />
           </div>
@@ -38,10 +43,27 @@
 <script setup>
 import { onMounted } from 'vue'
 import { useProductStore } from '@/stores/products'
+import { useRouter } from 'vue-router'
 
 const productStore = useProductStore()
+const router = useRouter()
+
+const viewBook = (id) => {
+  router.push(`/book/${id}`)
+}
 
 onMounted(() => {
   productStore.fetchProducts()
 })
 </script>
+
+<style scoped>
+.cursor-pointer {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.cursor-pointer:hover {
+  transform: translateY(-2px);
+}
+</style>
