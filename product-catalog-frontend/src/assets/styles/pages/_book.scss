@@ -1,0 +1,139 @@
+.book-view {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  margin-top: 7rem;
+  position: relative;
+}
+
+.book-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.book-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.book-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.book-details h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  color: #2c3e50;
+}
+
+.author {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #7f8c8d;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+.categories {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-right: 2rem;
+  margin: 0;
+}
+
+.category {
+  display: inline-block;
+  background: #ecf0f1;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: #5a6c7d;
+  font-weight: 500;
+  margin-top: 0;
+}
+
+.price {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #ecf0f1;
+  margin: 0;
+  margin-top: 1rem;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  background-color: #27ae60;
+  border-radius: 0.5rem;
+  display: block;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.2);
+    background-color: #2ecc71;
+  }
+}
+
+.summary {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+  color: #5a6c7d;
+  font-weight: 300;
+  margin-top: 1.5rem;
+}
+
+.back-button {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+  position: absolute;
+  top: -4rem;
+  left: 0rem;
+}
+
+.back-button:hover {
+  background: #2980b9;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+}
+
+.error {
+  color: #e74c3c;
+}
+
+@media (max-width: 768px) {
+  .book-view {
+    padding: 1rem;
+  }
+
+  .book-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .book-details h1 {
+    font-size: 2rem;
+  }
+
+  .price {
+    font-size: 1.5rem;
+  }
+}
